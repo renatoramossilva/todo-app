@@ -1,0 +1,39 @@
+li {
+  display: flex;
+  align-items: center;
+}
+
+.edit-form,
+.complete-form {
+  margin-left: 10px;
+}
+
+.task-item {
+  height: 50px; /* Defina a altura desejada */
+  display: flex;
+  align-items: center;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  margin-left: 10px; /* Adicione margem à esquerda para separar os botões */
+}
+.form-row {
+  display: flex;
+  align-items: center;
+}
+
+.form-row input,
+.form-row button {
+  margin: 5px;
+}
+#titulo,
+#data {
+  flex: 1;
+}
+
+#descricao {
+  flex: 2;
+  height: 2em;
+}

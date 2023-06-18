@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo App</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css', v='1.0') }}">
+</head>
+<body>
+  <h1> Tasks Management </h1>
+  <form action="{{ url_for('process_data') }}" method="POST">
+    <div class="form-row">
+      <input type="text" name="task_id" value="{{ task_id }}" style="display: none;">
+      <input type="text" name="title" placeholder="Task title" value="{{ title }}">
+      <input type="date" name="due_date" id="dataInput" value="{{ due_date }}">
+    </div>
+    <div class="form-row">
+      <input type="text" name="description" placeholder="Task description" value="{{ description }}">
+    </div>
+    <div class="form-row">
+      <input type="submit" value="Save">
+    </div>
+  </form>
+  <h1> Todo List </h1>
+  {% if edit_task %}
+    <p>Editing task: <br> ID: {{ task_id }} / Title: {{ title }} / Description: {{ description }} / Due Date: {{ due_date }}</p>
+  {% elif tasks %}
+  <table>
+    <tbody>
+      {% for task in tasks %}
+      <tr>
+        <td>{{ task.title }} &emsp; {{ task.description }} &emsp; {{ task.due_date }}</td>
+        <td>
+          <form action="{{ url_for('edit_task', task_id=task.task_id) }}" method="GET" class="edit-form">
+            <button type="submit">Edit</button>
+          </form>
+        </td>
+        <td>
+          <form action="{{ url_for('complete_task', task_id=task.task_id) }}" method="POST" class="complete-form">
+            <button type="submit">Mask as complete</button>
+          </form>
+        </td>
+        <td>
+          <form action="{{ url_for('delete_task', task_id=task.task_id) }}" method="POST" class="complete-form">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p>There are no tasks on your list</p>
+  {% endif %}
+</body>
+</html>

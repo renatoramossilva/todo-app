@@ -1,0 +1,10 @@
+[tool.black]
+line-length = 100
+include = '\.pyi?$'
+exclude = '''
+    /(
+        \.eggs    # exclude a folder
+        | \templates/  # exclude a folder
+        | \static/  # exclude a folder 
+    )/
+'''
